@@ -25,8 +25,16 @@ const organizer = mongoose.model('Organizer', {
         unique : true
     },
 
+    Email : {
+        type : String,
+        require : true,
+        unique : true
+    },
+
     Password : {
         type : String,
         required : true
     }
 })
+
+module.exports = organizer

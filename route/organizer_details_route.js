@@ -11,4 +11,26 @@ router.post('/createOrganizer', function(req,res){
     const Username = req.body.Username
     const Email = req.body.Email
     const Password = req.body.Password
+
+    const me = new organizer ({
+        Fullname : Fullname,
+        Address : Address,
+        Contact : Contact,
+        Username : Username,
+        Email : Email,
+        Password : Password
+    })
+
+    console.log("me", me)
+
+    me.save().then(function(result) {
+        res.json({
+            message : "Registered"
+        })
+        
+    }).catch(function(err){
+        res.status(500).json(err)
+    })
 })
+
+module.exports = router
