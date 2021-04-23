@@ -1,10 +1,33 @@
 const express = require('express')
 const router = express.Router()
 const organizer = require('../model/organizer_detail_model')
+const { check, validationResult } = require('express-validator')
 
 
-router.post('/createOrganizer', function(req,res){
+router.post('/createOrganizer',[
 
+    
+    check('Fullname', 'Firstname is required').not().isEmpty(),
+    check('Address', 'Address is required').not().isEmpty(),
+   
+    check('Contact', 'Contact must be valid').isMobilePhone(),
+    check('Username', 'Username is required').not().isEmpty(),
+    check('Email', 'Email is required' ).not().isEmpty(),
+    check('Email', 'Enter correct Email').isEmail(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Password', 'Enter Strong password').isStrongPassword()
+
+
+
+], function(req,res){
+
+    //    if(req.body == undefined)
+    // {
+    //     return res.status(400).json({message: "Invalid file format"})
+    // }
+    const validationError = validationResult(req);
+
+    if (validationError.isEmpty()) {
     const Fullname = req.body.Fullname
     const Address = req.body.Address
     const Contact = req.body.Contact
@@ -31,6 +54,13 @@ router.post('/createOrganizer', function(req,res){
     }).catch(function(err){
         res.status(500).json(err)
     })
+}
+else
+{
+     const error = validationError.errors[0].msg
+    res.send({error : error})
+}
 })
+
 
 module.exports = router
