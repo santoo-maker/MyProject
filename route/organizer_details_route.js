@@ -59,6 +59,7 @@ else
 {
      const error = validationError.errors[0].msg
     res.send({error : error})
+    //error validation for every details of organizer
 }
 })
 
