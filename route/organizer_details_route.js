@@ -9,7 +9,6 @@ router.post('/createOrganizer',[
     
     check('Fullname', 'Firstname is required').not().isEmpty(),
     check('Address', 'Address is required').not().isEmpty(),
-   
     check('Contact', 'Contact must be valid').isMobilePhone(),
     check('Username', 'Username is required').not().isEmpty(),
     check('Email', 'Email is required' ).not().isEmpty(),
