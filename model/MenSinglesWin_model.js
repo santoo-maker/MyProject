@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 
-const men = mongoose.model('MenSingles', {
+const menWin = mongoose.model('MenSinglesWinner', {
 
     PlayerFullName : {
         type : String,
-        required : true
+        required : true,
+        unique : true
     },
 
     PlayerSN : {
@@ -15,15 +16,21 @@ const men = mongoose.model('MenSingles', {
     },
     PlayerRepresentation : {
         type : String,
-        required : true
+        required : true,
+        unique : true
     },
 
     PlayerSlot : {
         type : Number,
-        unique : true
-    }, 
+        unique : true,
+        required : true
+    },
 
+    PlayerStatus : {
+        type : String
+        
+    }
   
 })
 
-module.exports = men
+module.exports = menWin
